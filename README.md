@@ -1,6 +1,6 @@
 # weather-location-info
 
-Empty project.
+Just a simple app that displays location and weather info.
 
 ## Building and running on localhost
 
