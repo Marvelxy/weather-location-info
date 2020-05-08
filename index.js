@@ -32,9 +32,9 @@ function getLocation() {
 			center: { lng: position.coords.longitude, lat: position.coords.latitude }
 		});
 
-		//var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+		var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 		//var mapEvents = new H.mapevents.MapEvents(map);
 
 		// Create the default UI:
-		//var ui = H.ui.UI.createDefault(map, maptypes);
+		var ui = H.ui.UI.createDefault(map, maptypes);
 	}
