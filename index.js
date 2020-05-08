@@ -1,12 +1,3 @@
-import "./styles.scss";
-//const { JSDOM } = require( "jsdom" );
-//const { window } = new JSDOM( "" );
-//const $ = require( "jquery" )( window );
-import $ from 'jquery';
-//var HereMapsAPI = require("node-heremaps");
-console.log("hello world!");
-
-
 $(document).ready(function(){
 	getLocation();
 
