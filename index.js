@@ -5,36 +5,41 @@ $(document).ready(function(){
 
 
 function getLocation() {
-	  if (navigator.geolocation) {
-	    navigator.geolocation.getCurrentPosition(showPosition);
-	  } else {
-			$('#map').html('<h5 class="mt-5">Geolocation is not supported by this browser.</h5>');
-	    //x.innerHTML = "Geolocation is not supported by this browser.";
-	  }
+  	if (navigator.geolocation) {
+    	navigator.geolocation.getCurrentPosition(showPosition);
+  	} else {
+		$('#map').html('<h5 class="mt-5">Geolocation is not supported by this browser.</h5>');
 	}
+}
 
-	function showPosition(position) {
-	  /*x.innerHTML = "Latitude: " + position.coords.latitude +
-	  "<br>Longitude: " + position.coords.longitude;*/
+function showPosition(position) {
+	// Initialize the platform object:
+	var platform = new H.service.Platform({
+		'apikey': '6OtoknayctHqyYvpXZKMdwjlgg6IkcNCXIwHkOmmfbk'
+	});
 
-		// Initialize the platform object:
-		var platform = new H.service.Platform({
-			'apikey': '6OtoknayctHqyYvpXZKMdwjlgg6IkcNCXIwHkOmmfbk'
-		});
+	var latitude = position.coords.latitude;
+	var longitude = position.coords.longitude;
 
+	// Obtain the default map types from the platform object
+	var maptypes = platform.createDefaultLayers();
 
-		// Obtain the default map types from the platform object
-		var maptypes = platform.createDefaultLayers();
+	// Instantiate (and display) a map object:
+	var map = new H.Map(document.getElementById('map'), maptypes.vector.normal.map,{
+		zoom: 10,
+		center: { lng: longitude, lat: latitude }
+	});
 
-		// Instantiate (and display) a map object:
-		var map = new H.Map(document.getElementById('map'), maptypes.vector.normal.map,{
-			zoom: 10,
-			center: { lng: position.coords.longitude, lat: position.coords.latitude }
-		});
+	var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+	//var mapEvents = new H.mapevents.MapEvents(map);
 
-		var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-		//var mapEvents = new H.mapevents.MapEvents(map);
+	// Create the default UI:
+	var ui = H.ui.UI.createDefault(map, maptypes);
 
-		// Create the default UI:
-		var ui = H.ui.UI.createDefault(map, maptypes);
-	}
+	// Using google icons
+	// Icons list = http://kml4earth.appspot.com/icons.html
+	var marker = 'http://maps.google.com/mapfiles/kml/paddle/ltblu-blank.png';
+	var icon = new H.map.Icon(marker);
+	var saved_location = new H.map.Marker({lat: latitude, lng: longitude}, { icon: icon });
+	map.addObject(saved_location);
+}
