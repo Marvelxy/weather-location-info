@@ -21,7 +21,6 @@ function showPosition(position) {
 	var latitude = position.coords.latitude;
 	var longitude = position.coords.longitude;
 
-
 	// Obtain the default map types from the platform object
 	var maptypes = platform.createDefaultLayers();
 
@@ -40,10 +39,7 @@ function showPosition(position) {
 	// Using google icons
 	// Icons list = http://kml4earth.appspot.com/icons.html
 	var marker = 'http://maps.google.com/mapfiles/kml/paddle/ltblu-blank.png';
-
 	var icon = new H.map.Icon(marker);
-
 	var saved_location = new H.map.Marker({lat: latitude, lng: longitude}, { icon: icon });
-
 	map.addObject(saved_location);
 }
