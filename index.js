@@ -11,7 +11,7 @@ $(document).ready(function(){
   			country.innerText = data.country_name;
   			city.innerText = data.city;
   			
-  			console.log(data);
+  			//console.log(data);
   		});
 
 });
