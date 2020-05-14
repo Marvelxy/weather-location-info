@@ -1,19 +1,17 @@
 $(document).ready(function(){
 	getLocation();
 
-	
 	fetch('https://ipapi.co/json/')
-  		.then(response => response.json())
+  		.then(function(response){ 
+  			return response.json();
+  		})
   		.then(function(data) {
   			var country = document.querySelector('#country');
   			var city = document.querySelector('#city');
 
   			country.innerText = data.country_name;
   			city.innerText = data.city;
-  			
-  			//console.log(data);
   		});
-
 });
 
 
