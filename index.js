@@ -4,7 +4,12 @@ $(document).ready(function(){
 	
 	fetch('https://ipapi.co/json/')
   		.then(response => response.json())
-  		.then(data => console.log(data));
+  		.then(function(data) {
+  			var country = document.querySelector('#country');
+  			country.innerText = data.country_name;
+  			
+  			console.log(data.country_name);
+  		});
 
 });
 
