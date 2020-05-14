@@ -18,9 +18,28 @@ body{
 	box-shadow: 0 0 5px #999;
 }
 
-.title{
+#right-section .title{
 	background-color: #659468; 
 	padding: 0.5px; 
 	color: #ffffff;
 	text-align: center;
+}
+{
+
+}
+#right-section .content{
+	padding: 0 2em 0 2em;
+}
+
+#right-section .location{
+
+}
+
+#right-section .location .location-item {
+	margin: 1em 0 1em;
+	color: #707070;
+}
+
+.float-right{
+	float: right;
 }
