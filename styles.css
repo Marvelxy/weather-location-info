@@ -29,15 +29,25 @@ body{
 	padding: 0 2em 0 2em;
 }
 
-#right-section .location{
-
-}
-
-#right-section .location .location-item {
+#right-section .content .location .location-item {
 	margin: 1em 0 1em;
 	color: #707070;
 }
 
+#right-section .content .temperature{
+	/*text-align: center;*/
+	border: 1px solid black;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+/* Utility classes */
 .float-right{
 	float: right;
+}
+
+.float-left{
+	float: left;
 }
