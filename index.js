@@ -64,11 +64,11 @@ function getWeatherInfo(latitude, longitude){
   			return response.json();
   		})
   		.then(function(data) {
-  			//var tempNum = document.querySelector('#number');
-  			//var city = document.querySelector('#city');
+  			var tempNum = document.querySelector('#number');
+  			tempNum.innerText = data['main']['temp'];
 
+  			//var city = document.querySelector('#city');
   			//tempNum.innerText = data.country_name;
-  			//city.innerText = data.city;*/
 
   			console.log(data['main']['temp']);
   		});
