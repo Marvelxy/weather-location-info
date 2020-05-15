@@ -40,11 +40,11 @@ body{
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: #707070;
 }
 
 #right-section .content .temperature #number{
 	font-size: 50px;
-	color: #707070;
 }
 
 
