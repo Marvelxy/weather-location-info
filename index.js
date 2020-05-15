@@ -32,6 +32,7 @@ function showPosition(position) {
 	var latitude = position.coords.latitude;
 	var longitude = position.coords.longitude;
 
+
 	// Obtain the default map types from the platform object
 	var maptypes = platform.createDefaultLayers();
 
@@ -54,6 +55,7 @@ function showPosition(position) {
 	var saved_location = new H.map.Marker({lat: latitude, lng: longitude}, { icon: icon });
 	map.addObject(saved_location);
 
+	// Display the temperature
 	getWeatherInfo(latitude, longitude);
 }
 
@@ -66,10 +68,6 @@ function getWeatherInfo(latitude, longitude){
   		.then(function(data) {
   			var tempNum = document.querySelector('#number');
   			tempNum.innerText = data['main']['temp'];
-
-  			//var city = document.querySelector('#city');
-  			//tempNum.innerText = data.country_name;
-
   			console.log(data['main']['temp']);
   		});
 	
