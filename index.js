@@ -53,4 +53,24 @@ function showPosition(position) {
 	var icon = new H.map.Icon(marker);
 	var saved_location = new H.map.Marker({lat: latitude, lng: longitude}, { icon: icon });
 	map.addObject(saved_location);
+
+	getWeatherInfo(latitude, longitude);
+}
+
+
+function getWeatherInfo(latitude, longitude){
+	fetch('https://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+'&appid=a2f6008873c30f9fc60df4512ba0edc8&units=metric')
+  		.then(function(response){ 
+  			return response.json();
+  		})
+  		.then(function(data) {
+  			//var tempNum = document.querySelector('#number');
+  			//var city = document.querySelector('#city');
+
+  			//tempNum.innerText = data.country_name;
+  			//city.innerText = data.city;*/
+
+  			console.log(data['main']['temp']);
+  		});
+	
 }
