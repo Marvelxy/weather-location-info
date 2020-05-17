@@ -78,10 +78,12 @@ body{
 .active{
 	background-color: #659468;
 	color: #ffffff;
+	transition: all 0.5s;
 }
 
 .inactive{
 	cursor: pointer;
 	background-color: #ffffff;
 	color: #659468;
+	transition: all 0.5s;
 }

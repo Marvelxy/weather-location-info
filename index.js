@@ -1,4 +1,4 @@
-$(document).ready(function(){
+(function() {
 	getLocation();
 
 	fetch('https://ipapi.co/json/')
@@ -15,10 +15,24 @@ $(document).ready(function(){
 
 
   	var celsius = document.querySelector('#celsius');
+  	var fahrenheit = document.querySelector('#fahrenheit');
+
   	celsius.addEventListener('click', function(){
-  		alert('Here!');
+  		celsius.classList.add('active');
+  		celsius.classList.remove('inactive');
+  		fahrenheit.classList.remove('active');
+  		fahrenheit.classList.add('inactive');
+  		getWeatherInfo(celsius);
   	});
-});
+
+  	fahrenheit.addEventListener('click', function(){
+  		fahrenheit.classList.add('active');
+  		fahrenheit.classList.remove('inactive');
+  		celsius.classList.remove('active');
+  		celsius.classList.add('inactive');
+  		getWeatherInfo(fahrenheit);
+  	});
+})();
 
 
 function getLocation() {
@@ -37,7 +51,6 @@ function showPosition(position) {
 
 	var latitude = position.coords.latitude;
 	var longitude = position.coords.longitude;
-
 
 	// Obtain the default map types from the platform object
 	var maptypes = platform.createDefaultLayers();
@@ -61,20 +74,40 @@ function showPosition(position) {
 	var saved_location = new H.map.Marker({lat: latitude, lng: longitude}, { icon: icon });
 	map.addObject(saved_location);
 
+	// Set location to html element as attribute
+	var location = document.querySelector('#location');
+	location.setAttribute("latitude", latitude);
+	location.setAttribute("longitude", longitude);
+
 	// Display the temperature
-	getWeatherInfo(latitude, longitude);
+	getWeatherInfo(celsius);
 }
 
 
-function getWeatherInfo(latitude, longitude){
-	fetch('https://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+'&appid=a2f6008873c30f9fc60df4512ba0edc8&units=metric')
+function getWeatherInfo(unit){
+	var location = document.querySelector('#location');
+	var latitude = location.getAttribute("latitude");
+	var longitude = location.getAttribute("longitude");
+
+	if(unit === celsius){
+		fetch('https://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+'&appid=a2f6008873c30f9fc60df4512ba0edc8&units=metric')
   		.then(function(response){ 
   			return response.json();
   		})
   		.then(function(data) {
   			var tempNum = document.querySelector('#number');
   			tempNum.innerText = data['main']['temp'];
-  			console.log(data['main']['temp']);
   		});
+	}
+	else if(unit === fahrenheit){
+  		fetch('https://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+'&appid=a2f6008873c30f9fc60df4512ba0edc8&units=imperial')
+  		.then(function(response){ 
+  			return response.json();
+  		})
+  		.then(function(data) {
+  			var tempNum = document.querySelector('#number');
+  			tempNum.innerText = data['main']['temp'];
+  		});
+	}
 	
 }
