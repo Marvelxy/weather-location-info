@@ -12,6 +12,12 @@ $(document).ready(function(){
   			country.innerText = data.country_name;
   			city.innerText = data.city;
   		});
+
+
+  	var celsius = document.querySelector('#celsius');
+  	celsius.addEventListener('click', function(){
+  		alert('Here!');
+  	});
 });
 
 
