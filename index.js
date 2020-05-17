@@ -16,7 +16,6 @@
 
   	var celsius = document.querySelector('#celsius');
   	var fahrenheit = document.querySelector('#fahrenheit');
-  	
 
   	celsius.addEventListener('click', function(){
   		celsius.classList.add('active');
