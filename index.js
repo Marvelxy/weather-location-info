@@ -16,6 +16,7 @@
 
   	var celsius = document.querySelector('#celsius');
   	var fahrenheit = document.querySelector('#fahrenheit');
+  	
 
   	celsius.addEventListener('click', function(){
   		celsius.classList.add('active');
@@ -89,14 +90,17 @@ function getWeatherInfo(unit){
 	var latitude = location.getAttribute("latitude");
 	var longitude = location.getAttribute("longitude");
 
+	var tempNum = document.querySelector('#number');
+  	var unitDiv = document.querySelector('#unit');
+
 	if(unit === celsius){
 		fetch('https://api.openweathermap.org/data/2.5/weather?lat='+latitude+'&lon='+longitude+'&appid=a2f6008873c30f9fc60df4512ba0edc8&units=metric')
   		.then(function(response){ 
   			return response.json();
   		})
   		.then(function(data) {
-  			var tempNum = document.querySelector('#number');
   			tempNum.innerText = data['main']['temp'];
+  			unitDiv.innerText = 'Celsius';
   		});
 	}
 	else if(unit === fahrenheit){
@@ -105,8 +109,8 @@ function getWeatherInfo(unit){
   			return response.json();
   		})
   		.then(function(data) {
-  			var tempNum = document.querySelector('#number');
   			tempNum.innerText = data['main']['temp'];
+  			unitDiv.innerText = 'Fahrenheit';
   		});
 	}
 	
